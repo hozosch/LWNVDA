@@ -1,0 +1,52 @@
+ci:
+  autoupdate_schedule: monthly
+  autoupdate_commit_msg: "pre-commit auto-update"
+  autofix_commit_msg: "pre-commit auto-fix"
+
+default_language_version:
+  python: python3.13
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+    # Prevent accidentally committing huge files
+    - id: check-added-large-files
+
+    # Validate Python syntax
+    - id: check-ast
+
+    # Detect unresolved merge conflicts
+    - id: check-merge-conflict
+
+    # Detect accidental debug code
+    - id: debug-statements
+
+    # Remove trailing whitespace
+    - id: trailing-whitespace
+      types_or: [python, markdown, yaml, toml]
+
+    # Ensure files end with exactly one newline
+    - id: end-of-file-fixer
+      types_or: [python, markdown, yaml, toml]
+
+    # Remove UTF-8 BOMs
+    - id: fix-byte-order-marker
+      types_or: [python, markdown, yaml, toml]
+
+    # Validate YAML files
+    - id: check-yaml
+
+    # Validate TOML files
+    - id: check-toml
+
+    # Avoid problematic Windows filenames
+    - id: check-illegal-windows-names
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.12.7
+  hooks:
+    - id: ruff
+      args: [--fix]
+
+    - id: ruff-format

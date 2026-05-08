@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools~=80.9", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LWNVDA"
+version = "1.0.0"
+description = "Lone Wolf support App module for NVDA"
+readme = "readme.md"
+requires-python = ">=3.13,<3.14"
+
+authors = [
+	{ name = "Karl Eick", email = "hozosch@web.de" }
+]
+
+classifiers = [
+	"Programming Language :: Python :: 3",
+	"Operating System :: Microsoft :: Windows",
+	"Topic :: Accessibility",
+]
+
+dependencies = [
+	"scons>=4.0",
+	"markdown>=3.5",
+]
+
+[project.urls]
+Repository = "https://github.com/hozosch/LWNVDA"
+
+# -----------------------------
+# Ruff (Lint + Format)
+# -----------------------------
+[tool.ruff]
+line-length = 110
+
+include = ["*.py", "sconstruct"]
+
+exclude = [
+	".git",
+	"__pycache__",
+	".venv",
+	"site_scons",
+	"buildVars.py"
+]
+
+builtins = ["_", "ngettext", "pgettext", "npgettext"]
+
+[tool.ruff.format]
+indent-style = "tab"
+line-ending = "lf"
+
+[tool.ruff.lint]
+ignore = ["W191"]
+logger-objects = ["logHandler.log"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+# -----------------------------
+# Pyright (optional, but without node!)
+# -----------------------------
+[tool.pyright]
+typeCheckingMode = "basic"
+
+include = ["**/*.py"]
+
+exclude = [
+	".git",
+	".venv",
+	"site_scons"
+]
+
+extraPaths = [
+	"./addon"
+]
+
+reportMissingImports = false
+reportMissingTypeStubs = false
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.0",
+    "ruff>=0.15.12",
+]

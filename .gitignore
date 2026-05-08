@@ -1,0 +1,18 @@
+# Build output
+*.nvda-addon
+.sconsign.dblite
+addon/doc/en/
+addon/doc/*.css
+
+# Generated manifest
+addon/manifest.ini
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# other
+*.mo
+*.pot
+*.py[co]
+*.egg-info
